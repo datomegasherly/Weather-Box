@@ -1,0 +1,8 @@
+{
+  "name": "weather-box",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/datomegasherly/weather-box.git",
+  "author": "datomegasherly <dat.omega.sherly@gmail.com>",
+  "license": "MIT"
+}
