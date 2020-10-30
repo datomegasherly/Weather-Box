@@ -20,6 +20,17 @@ module.exports = {
       {
         test: /.(css|scss)$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+      },
+      {
+        test: /.(jpg|jpeg|png|gif|mp3|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name]-[hash:8].[ext]"
+            }
+          }
+        ]
       }
     ]
   },
