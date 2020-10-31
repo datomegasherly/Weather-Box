@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import City from './City';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import City from './City';
+import Weather from './Weather';
 
 class App extends Component {
     render(){
@@ -12,6 +14,9 @@ class App extends Component {
                     </div>
                     <div className="col-12">
                         <City />
+                    </div>
+                    <div className="col-12">
+                        <Weather />
                     </div>
                 </div>
             </div>
