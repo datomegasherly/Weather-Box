@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectCity } from '../actions';
 
@@ -19,6 +20,11 @@ class City extends Component {
         )
     }
 }
+
+City.propTypes = {
+    selectCity: PropTypes.func,
+    selectedCities: PropTypes.array
+};
 
 const mapStateToProps = state => {
     const { selectedCities } = state;
