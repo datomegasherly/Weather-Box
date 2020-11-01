@@ -15,6 +15,12 @@ it('City component render test', () => {
     expect(component.length).toBe(1);
 });
 
+it('render select city Input', () => {
+    const wrapper = setup();
+    const selectCityInput = getByAttr(wrapper, 'select-city-input');
+    expect(selectCityInput.length).toBe(1);
+})
+
 it('Check selectCity prop to be function', () => {
     const state = { selectedCities: [] };
     const wrapper = setup(state);
