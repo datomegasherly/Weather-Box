@@ -1,15 +1,22 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import { getByAttr } from '../../test/testUtils';
+import { getByAttr, checkPropType, storeFactory } from '../../test/testUtils';
 
 import City from './City';
 
-const setup = (props = {}) => {
-    return shallow(<City {...props} />);
+const setup = (state) => {
+    const store = storeFactory(state);
+    return shallow(<City store={store} />).dive().dive();
 }
 
 it('City component render test', () => {
     const wrapper = setup();
     const component = getByAttr(wrapper, 'city-component');
     expect(component.length).toBe(1);
+});
+
+it('Check selectCity prop to be function', () => {
+    const state = { selectedCities: [] };
+    const wrapper = setup(state);
+    checkPropType(wrapper, 'selectCity');
 });
