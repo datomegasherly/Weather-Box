@@ -7,7 +7,7 @@ describe('selectCity action dispatch', () => {
         let store = storeFactory(initialState);
         store.dispatch(selectCity('city1'));
         const newState = store.getState();
-        expect(newState).toEqual({ selectedCities: ['city1'] });
+        expect(newState.selectedCities).toEqual(['city1']);
     });
     it('some cities selected before', () => {
         const initialState = { selectedCities: [] };
@@ -15,6 +15,6 @@ describe('selectCity action dispatch', () => {
         store.dispatch(selectCity('city1'));
         store.dispatch(selectCity('city2'));
         const newState = store.getState();
-        expect(newState).toEqual({ selectedCities: ['city1','city2'] });
+        expect(newState.selectedCities).toEqual(['city1','city2']);
     });
 });
