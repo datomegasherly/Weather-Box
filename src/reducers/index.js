@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
 import actionTypes from '../actionTypes';
+import { listOfCities } from '../helpers';
+
+const citiesReducer = () => {
+    return listOfCities;
+}
 
 /**
  * @function selectedCitiesReducer Create an array with selected cities to show weather box
@@ -9,7 +14,7 @@ import actionTypes from '../actionTypes';
  */
 const selectedCitiesReducer = (state = [], action) => {
     switch(action.type){
-        case actionTypes.CURRENT_CITY:
+        case actionTypes.SET_CITY:
             return [...state, action.payload];
         default:
             return state;
@@ -17,5 +22,6 @@ const selectedCitiesReducer = (state = [], action) => {
 }
 
 export default combineReducers({
-    selectedCities: selectedCitiesReducer
+    selectedCities: selectedCitiesReducer,
+    cities: citiesReducer
 });

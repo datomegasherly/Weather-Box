@@ -6,7 +6,7 @@ import actionTypes from '../actionTypes';
  */
 export const selectCity = city => {
     return {
-        type: actionTypes.CURRENT_CITY,
+        type: actionTypes.SET_CITY,
         payload: city
     }
 }
