@@ -10,7 +10,7 @@ import actionTypes from '../actionTypes';
 const selectedCitiesReducer = (state = [], action) => {
     switch(action.type){
         case actionTypes.CURRENT_CITY:
-            return state.concat(action.payload);
+            return [...state, action.payload];
         default:
             return state;
     }
