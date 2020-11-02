@@ -1,5 +1,6 @@
 const actionTypes = {
-    CURRENT_CITY: 'CURRENT_CITY',
+    SET_CITY: 'SET_CITY',
+    UNSET_CITY: 'UNSET_CITY'
 }
 
 export default actionTypes;
