@@ -1,0 +1,10 @@
+.city-box {
+    position: absolute;
+    width: calc(100% - 10vw);
+    min-height: 30px;
+    border: 1px solid #d0d0d0;
+    right: 0px;
+    margin-top: 40px;
+    border-radius: 2px;
+    background: white;
+}
