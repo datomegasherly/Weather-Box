@@ -22,14 +22,11 @@ class City extends Component {
     }
     /**
      * @function addCity add City to redux state "selectedCities"
-     * @param {Object} ev - Javascript Event ( KeyUp event )
+     * @param {Object} currentCity - return current selected city data {id, name}
      */
-    updateCityBox = (ev) => {
+    updateCityBox = currentCity => {
         const { selectCity } = this.props;
-        if(ev.keyCode && ev.keyCode == 13){ // check if keyup is enter ( code : 13 )
-            let value = ev.target.value;
-            selectCity(value);
-        }
+        selectCity(currentCity);
     }
     render() {
         let { isFocus, citySearch } = this.state;
@@ -51,8 +48,8 @@ class City extends Component {
                         placeholder="type City then Enter"
                         value={citySearch}
                         onChange={this.updateCitySearch}
-                        onFocus={() => this.setState({isFocus: true})}
-                        onBlur={() => setTimeout(() => this.setState({isFocus: false}), 50)} // use setTimeout to let user click on a city from city-box to select before hide city-box
+                        onFocus={() => this.setState({isFocus: true, citySearch: ''})}
+                        onBlur={() => setTimeout(() => this.setState({isFocus: false, citySearch: ''}), 200)} // use setTimeout to let user click on a city from city-box to select before hide city-box
                     />
                     {
                         isFocus ? 
@@ -61,7 +58,7 @@ class City extends Component {
                                 cities.map(city => {
                                     if(citySearch == '' || city.name.toString().toLowerCase().indexOf(citySearch.toString().toLowerCase()) >=0){
                                         return (
-                                            <div key={city.id} className="">{city.name}</div>
+                                            <div onClick={() => this.updateCityBox(city)} key={city.id} className="">{city.name}</div>
                                         )
                                     }
                                 })
