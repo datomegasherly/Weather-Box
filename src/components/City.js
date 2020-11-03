@@ -9,7 +9,16 @@ class City extends Component {
      * @param isFocus - It shows that select city input is focus or blur to show or hide city-box
      */
     state = {
-        isFocus: false
+        isFocus: false,
+        citySearch: ''
+    }
+    /**
+     * will update citySearch state and filter cities redux state
+     * @param {Object} ev - Javascript Event ( change event )
+     */
+    updateCitySearch = (ev) => {
+        let citySearch = ev.target.value;
+        this.setState({citySearch});
     }
     /**
      * @function addCity add City to redux state "selectedCities"
@@ -22,9 +31,9 @@ class City extends Component {
             selectCity(value);
         }
     }
-
     render() {
-        let { isFocus } = this.state;
+        let { isFocus, citySearch } = this.state;
+        let { cities } = this.props;
         return (
             <div className="container mt-4" data-test="city-component">
                 <div 
@@ -40,14 +49,23 @@ class City extends Component {
                         data-test="select-city-input"
                         type="text"
                         placeholder="type City then Enter"
-                        onKeyUp={this.updateCityBox}
+                        value={citySearch}
+                        onChange={this.updateCitySearch}
                         onFocus={() => this.setState({isFocus: true})}
                         onBlur={() => setTimeout(() => this.setState({isFocus: false}), 50)} // use setTimeout to let user click on a city from city-box to select before hide city-box
                     />
                     {
                         isFocus ? 
-                        <div className="city-box">
-                            
+                        <div data-test="city-box" className="city-box">
+                            {
+                                cities.map(city => {
+                                    if(citySearch == '' || city.name.toString().toLowerCase().indexOf(citySearch.toString().toLowerCase()) >=0){
+                                        return (
+                                            <div key={city.id} className="">{city.name}</div>
+                                        )
+                                    }
+                                })
+                            }
                         </div>
                         : ''
                     }
