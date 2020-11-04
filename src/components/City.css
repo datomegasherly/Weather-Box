@@ -9,6 +9,7 @@
     background: white;
     max-height: 150px;
     overflow-y: auto;
+    z-index: 5;
 }
 
 .city-box>div {
