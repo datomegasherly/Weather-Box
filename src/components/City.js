@@ -28,9 +28,26 @@ class City extends Component {
         const { selectCity } = this.props;
         selectCity(currentCity);
     }
+    /**
+     * filter list of cities , and prevent duplicate city selection
+     */
+    filterCities = () => {
+        let { cities, selectedCities } = this.props;
+        let { citySearch } = this.state;
+        return cities.map(city => {
+            if(citySearch == '' || city.name.toString().toLowerCase().indexOf(citySearch.toString().toLowerCase()) >=0){
+                if(!selectedCities.find(selected => selected.id == city.id)){ // filter selection to prevent duplicate select
+                    return (
+                        <div onClick={() => this.updateCityBox(city)} key={city.id} className="">{city.name}</div>
+                    )
+                }
+            }
+        })
+    }
     render() {
         let { isFocus, citySearch } = this.state;
         let { cities } = this.props;
+        let filterCities = this.filterCities;
         return (
             <div className="container mt-4" data-test="city-component">
                 <div 
@@ -54,15 +71,7 @@ class City extends Component {
                     {
                         isFocus ? 
                         <div data-test="city-box" className="city-box">
-                            {
-                                cities.map(city => {
-                                    if(citySearch == '' || city.name.toString().toLowerCase().indexOf(citySearch.toString().toLowerCase()) >=0){
-                                        return (
-                                            <div onClick={() => this.updateCityBox(city)} key={city.id} className="">{city.name}</div>
-                                        )
-                                    }
-                                })
-                            }
+                            { filterCities() }
                         </div>
                         : ''
                     }
