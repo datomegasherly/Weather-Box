@@ -1,6 +1,7 @@
 import actionTypes from '../actionTypes';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import { apiKey } from '../helpers';
 /**
  * @function selectCity will add a city to selectedCity reducer
  * @param {object} city 
@@ -8,7 +9,6 @@ import axios from 'axios';
  */
 const selectCity = city => {
     return async(dispatch, getState) => {
-        let apiKey = getState().apiKey;
         let payload = await axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${city.id}&appid=${apiKey}`);
         dispatch({
             type: actionTypes.SET_CITY,
