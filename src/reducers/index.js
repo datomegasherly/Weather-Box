@@ -1,15 +1,9 @@
 import { combineReducers } from 'redux';
 import actionTypes from '../actionTypes';
-import { listOfCities, apiKey } from '../helpers';
+import { listOfCities } from '../helpers';
 
 const citiesReducer = () => {
     return listOfCities;
-}
-/**
- * return API key for openweathermap.org
- */
-const ApiKeyReducer = () => {
-    return apiKey;
 }
 
 /**
@@ -21,7 +15,9 @@ const ApiKeyReducer = () => {
 const selectedCitiesReducer = (state = [], action) => {
     switch(action.type){
         case actionTypes.SET_CITY:
-            return [...state, action.payload];
+            let currentData = action.payload.data;
+            let newState = {id: currentData.id, name: currentData.name, data: currentData};
+            return [...state, newState];
         default:
             return state;
     }
@@ -29,6 +25,5 @@ const selectedCitiesReducer = (state = [], action) => {
 
 export default combineReducers({
     selectedCities: selectedCitiesReducer,
-    cities: citiesReducer,
-    apiKey: ApiKeyReducer,
+    cities: citiesReducer
 });
