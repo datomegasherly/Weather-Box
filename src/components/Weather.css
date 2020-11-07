@@ -16,3 +16,6 @@
     color: #929191;
     transition: all 0.2s ease-in-out;
 }
+.img-64 img {
+    width: 64px;
+}
