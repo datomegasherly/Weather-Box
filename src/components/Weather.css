@@ -7,3 +7,12 @@
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
+.close-button {
+    cursor: pointer;
+    color: red;
+    transition: all 0.2s ease-in-out;
+}
+.close-button:hover {
+    color: #929191;
+    transition: all 0.2s ease-in-out;
+}
