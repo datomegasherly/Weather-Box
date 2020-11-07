@@ -18,6 +18,8 @@ const selectedCitiesReducer = (state = [], action) => {
             let currentData = action.payload.data;
             let newState = {id: currentData.id, name: currentData.name, data: currentData};
             return [...state, newState];
+        case actionTypes.UNSET_CITY:
+            return state.filter(s => s.id !== action.payload.id);
         default:
             return state;
     }
