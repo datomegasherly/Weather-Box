@@ -24,6 +24,21 @@ selectCity.propTypes = {
     })
 }
 
+const removeCity = city => {
+    return {
+        type: actionTypes.UNSET_CITY,
+        payload: city
+    }
+}
+
+removeCity.propTypes = {
+    city: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired
+    })
+}
+
 export {
-    selectCity
+    selectCity,
+    removeCity
 };
