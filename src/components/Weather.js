@@ -19,7 +19,7 @@ class Weather extends Component {
                                 selectedCities.map(city => {
                                     let { data } = city;
                                     let weather = data.weather && data.weather[0] ? data.weather[0] : false;
-                                    let sys = data.sys;
+                                    let { sys, main } = data;
                                     return (
                                         <div key={city.id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                                             <div className="float-right mr-2 ml-2 mt-1 close-button" data-test="close-button" onClick={() => removeCity(city)}>
@@ -61,7 +61,18 @@ class Weather extends Component {
                                                             <div className="col-12 row weather-option-box">
                                                                 <div className="col-12">Latest Weather Conditions</div>
                                                             </div>
-                                                            
+                                                            <div className="col-12 row">
+                                                                <div className="col-6 mb-1">Temperature :</div>
+                                                                <div className="col-6 mb-1">{Math.round(main.temp)} &#8451;</div>
+                                                                <div className="col-6 mb-1">Real Feel :</div>
+                                                                <div className="col-6 mb-1">{Math.round(main.feels_like)} &#8451;</div>
+                                                                <div className="col-6 mb-1">Min Temp. :</div>
+                                                                <div className="col-6 mb-1">{Math.round(main.temp_min)} &#8451;</div>
+                                                                <div className="col-6 mb-1">Max Temp. :</div>
+                                                                <div className="col-6 mb-1">{Math.round(main.temp_max)} &#8451;</div>
+                                                                <div className="col-6">humidity :</div>
+                                                                <div className="col-6">{Math.round(main.humidity)} %</div>
+                                                            </div>
                                                         </Fragment>
                                                         : ''
                                                 }
