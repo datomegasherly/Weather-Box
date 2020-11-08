@@ -28,13 +28,13 @@ class Weather extends Component {
                                                 </svg>
                                             </div>
                                             <div className="weather-box-inner container">
-                                                <div className="row">
-                                                    <div className="col-12">
-                                                        {sys && sys.country && <img src={`https://www.countryflags.io/${sys.country}/shiny/32.png`} />} {city.name}
-                                                    </div>
-                                                    {
-                                                        weather ?
-                                                            <Fragment>
+                                                {
+                                                    weather ?
+                                                        <Fragment>
+                                                            <div className="row">
+                                                                <div className="col-12">
+                                                                    {sys && sys.country && <img src={`https://www.countryflags.io/${sys.country}/shiny/32.png`} />} {city.name}
+                                                                </div>
                                                                 <div className="col-12">
                                                                     <div className="img-64 float-left">
                                                                         <img src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`} />
@@ -55,11 +55,16 @@ class Weather extends Component {
                                                                         <div className="col-6">Sunset :</div>
                                                                         <div className="col-6">{new Date(sys.sunset*1000).toLocaleTimeString()}</div>
                                                                     </div>
+                                                                    
                                                                 </div>
-                                                            </Fragment>
+                                                            </div>
+                                                            <div className="col-12 row weather-option-box">
+                                                                <div className="col-12">Latest Weather Conditions</div>
+                                                            </div>
+                                                            
+                                                        </Fragment>
                                                         : ''
-                                                    }
-                                                </div>
+                                                }
                                             </div>
                                         </div>
                                     )
