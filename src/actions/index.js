@@ -9,7 +9,8 @@ import { apiKey } from '../helpers';
  */
 const selectCity = city => {
     return async(dispatch, getState) => {
-        let payload = await axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${city.id}&units=metric&appid=${apiKey ? apiKey : process.env.API_KEY}`);
+        // use https because of security and sever testing
+        let payload = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id=${city.id}&units=metric&appid=${apiKey ? apiKey : process.env.API_KEY}`);
         dispatch({
             type: actionTypes.SET_CITY,
             payload
