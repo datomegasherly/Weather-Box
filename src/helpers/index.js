@@ -46,4 +46,4 @@ export const cityData = {
     "name": "Paris",
     "cod": 200
 };
-export const apiKey = 'Your API KEY from openweathermap.org';
+export const apiKey = false;//'Your API KEY from openweathermap.org';
