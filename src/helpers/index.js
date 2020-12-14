@@ -47,4 +47,4 @@ export const cityData = {
     "cod": 200
 };
 export const apiKey = false;//'Your API KEY from openweathermap.org';
-export const uri = 'https://magic-ops.com/calendar'; // my default server ( change this to your server url )
+export const uri = 'https://magic-ops.com/weather'; // my default server ( change this to your server url )
