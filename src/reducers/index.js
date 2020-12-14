@@ -2,8 +2,13 @@ import { combineReducers } from 'redux';
 import actionTypes from '../actionTypes';
 import { listOfCities } from '../helpers';
 
-const citiesReducer = () => {
-    return listOfCities;
+const citiesReducer = (state = [], action) => {
+    switch(action.type){
+        case actionTypes.FILTER_CITY:
+            return action.payload;
+        default:
+            return state;
+    }
 }
 
 /**

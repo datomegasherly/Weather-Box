@@ -1,7 +1,7 @@
 import actionTypes from '../actionTypes';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { apiKey } from '../helpers';
+import { apiKey, uri } from '../helpers';
 /**
  * @function selectCity will add a city to selectedCity reducer
  * @param {object} city 
@@ -25,6 +25,20 @@ selectCity.propTypes = {
     })
 }
 
+const filterCity = filter => {
+    return async(dispatch) => {
+        let { data } = await axios.get(filter.length ? `${uri}/api/cities/${filter}` : `${uri}/api/cities`);
+        dispatch({
+            type: actionTypes.FILTER_CITY,
+            payload: data
+        });
+    }
+}
+
+filterCity.propTypes = {
+    filter: PropTypes.string.isRequired
+}
+
 const removeCity = city => {
     return {
         type: actionTypes.UNSET_CITY,
@@ -41,5 +55,6 @@ removeCity.propTypes = {
 
 export {
     selectCity,
-    removeCity
+    removeCity,
+    filterCity
 };
