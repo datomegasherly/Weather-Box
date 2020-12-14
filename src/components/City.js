@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { selectCity } from '../actions';
+import { selectCity, filterCity } from '../actions';
 import './City.css';
+import { indexOf } from 'prop-types/lib/ReactPropTypesSecret';
 
 class City extends Component {
     /**
@@ -10,15 +11,22 @@ class City extends Component {
      */
     state = {
         isFocus: false,
-        citySearch: ''
+        citySearch: '',
     }
+    timeOut = false;
     /**
      * will update citySearch state and filter cities redux state
      * @param {Object} ev - Javascript Event ( change event )
      */
     updateCitySearch = (ev) => {
+        const { filterCity } = this.props;
         let citySearch = ev.target.value;
-        this.setState({citySearch});
+        this.setState({isFocus: true, citySearch}, () => {
+            if(this.timeOut) clearTimeout(this.timeOut);
+            this.timeOut = setTimeout(() => {
+                filterCity(citySearch);
+            }, 200);
+        });
     }
     /**
      * @function addCity add City to redux state "selectedCities"
@@ -28,6 +36,7 @@ class City extends Component {
         const { selectCity } = this.props;
         selectCity(currentCity);
     }
+
     /**
      * filter list of cities , and prevent duplicate city selection
      */
@@ -43,6 +52,10 @@ class City extends Component {
                 }
             }
         })
+    }
+    componentDidMount(){
+        const { filterCity } = this.props;
+        filterCity('');
     }
     render() {
         let { isFocus, citySearch } = this.state;
@@ -65,7 +78,7 @@ class City extends Component {
                         placeholder="type City then Enter"
                         value={citySearch}
                         onChange={this.updateCitySearch}
-                        onFocus={() => this.setState({isFocus: true, citySearch: ''})}
+                        onFocus={this.updateCitySearch}
                         onBlur={() => setTimeout(() => this.setState({isFocus: false, citySearch: ''}), 200)} // use setTimeout to let user click on a city from city-box to select before hide city-box
                     />
                     {
@@ -91,4 +104,4 @@ const mapStateToProps = state => {
     return { cities, selectedCities };
 };
 
-export default connect(mapStateToProps, { selectCity })(City);
+export default connect(mapStateToProps, { selectCity, filterCity })(City);
