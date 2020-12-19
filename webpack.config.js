@@ -2,12 +2,15 @@ const path = require("path");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: ['@babel/polyfill', path.join(__dirname, "src", "index.js")],
   output: {
     path: path.join(__dirname, "build"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    // add this line because of error (Webpack5 Automatic publicPath is not supported in this browser) when use development type of webpack
+    publicPath: ''
   },
   module: {
     rules: [
@@ -28,7 +31,8 @@ module.exports = {
           {
             loader: "file-loader",
             options: {
-              name: "[path][name]-[hash:8].[ext]"
+              name: "[name].[ext]",
+              outputPath: "/assets/images"
             }
           }
         ]
@@ -46,6 +50,11 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.API_KEY': `"${process.env.API_KEY}"`
-    })
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "./assets/images", to: "./assets/images" },
+      ],
+    }),
   ]
 };
