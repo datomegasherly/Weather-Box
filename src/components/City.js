@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { selectCity, filterCity } from '../actions';
 import './City.css';
-import { indexOf } from 'prop-types/lib/ReactPropTypesSecret';
 
 class City extends Component {
     /**
@@ -47,7 +46,9 @@ class City extends Component {
             if(citySearch == '' || city.name.toString().toLowerCase().indexOf(citySearch.toString().toLowerCase()) >=0){
                 if(!selectedCities.find(selected => selected.id == city.id)){ // filter selection to prevent duplicate select
                     return (
-                        <div onClick={() => this.updateCityBox(city)} key={city.id} className="">{city.name}</div>
+                        <div onClick={() => this.updateCityBox(city)} key={city.id} className="text-left pl-3">
+                            <img src={`https://www.countryflags.io/${city.country}/shiny/32.png`} /> {city.name}
+                        </div>
                     )
                 }
             }
@@ -66,16 +67,12 @@ class City extends Component {
                 <div 
                     className="text-center col-xs-12 col-sm-8 col-md-6 col-lg-4 col-xl-4 offset-sm-2 offset-md-3 offset-lg-4 offset-xl-4 row"
                 >
-                    <label 
-                        className="col-5 mt-1"
-                        htmlFor="cityInput"
-                    >Select Cities</label>
                     <input 
-                        className="col-7 form-control"
+                        className="col-12 form-control height-50"
                         id="cityInput"
                         data-test="select-city-input"
                         type="text"
-                        placeholder="type City then Enter"
+                        placeholder="type City then Select"
                         value={citySearch}
                         onChange={this.updateCitySearch}
                         onFocus={this.updateCitySearch}
