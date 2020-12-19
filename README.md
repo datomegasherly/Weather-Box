@@ -20,4 +20,6 @@ weather api : https://openweathermap.org
 
 flag icon api : https://www.countryflags.io/
 flag icon license : shiny provided under MIT licence by GoSquared (https://github.com/gosquared/flags)
+
+background image: https://coolbackgrounds.io/
 ```
