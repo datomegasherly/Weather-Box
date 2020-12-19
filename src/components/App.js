@@ -9,7 +9,7 @@ class App extends Component {
         return (
             <div data-test="app-component" className="container-fluid">
                 <div className="row">
-                    <div className="col-12 text-center mt-3">
+                    <div className="col-12 text-center weather-box-header">
                         <h1>Weather Box</h1>
                     </div>
                     <div className="col-12">

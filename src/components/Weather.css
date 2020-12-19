@@ -3,9 +3,11 @@
 }
 .weather-box-inner {
     padding: 5px;
-    border: 1px solid #84c8ff;
+    border: 2px solid #398db5;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    background: #ffffff73;
+    transition: all 0.2s ease-in-out;
 }
 .close-button {
     cursor: pointer;
@@ -20,10 +22,30 @@
     width: 64px;
 }
 .weather-option-box {
+    cursor: pointer;
     padding: 5px;
     text-align: center;
     font-size: 9pt;
     background-color: whitesmoke;
     margin-left: 0%;
     margin-right: 0%;
+    transition: all 0.2s ease-in-out;
+}
+.weather-option-box:hover {
+    background-color: #91d7e8;
+    transition: all 0.2s ease-in-out;
+}
+.weather-box-header {
+    border-bottom: 2px solid #d8d8d8;
+    background: #43c3ff;
+    color: white;
+}
+.weather-country-box {
+    background: #91d7e8;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-weight: bold;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 10px;
 }
